@@ -27,17 +27,6 @@ public class ArrayList {
         ensureCapacity();
         int[] newArray = new int[size+1];
 
-        if (index == 0) {
-            newArray[0] = element;
-            int j = 1;
-
-            for (int i = 0; i < size; i++) {
-                newArray[j] = array[i];
-                j++;
-            }
-
-        }
-
         int j = 0;
         for (int i = 0; i < index; i++) {
             newArray[j] = array[j];
@@ -127,7 +116,7 @@ public class ArrayList {
     }
 
 
-    public int[] clonee() {
+    public int[] clone() {
         return array;
     }
 
