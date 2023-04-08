@@ -1,15 +1,16 @@
 package Homework.collections;
 
 public class ArrayList {
-    int[] array = new int[5];
-    int filledSize = 0;
+    int[] array = new int[1];
+    int size = 0;
 
-    private void ensureCapacity() {
-        if (filledSize >= array.length) {
-            int[] newArray = new int[filledSize * 2];
-            for (int i = 0; i < filledSize; i++) {
+    public void ensureCapacity() {
+        if (size == array.length) {
+            int[] newArray = new int[size + 1];
+            for (int i = 0; i < size; i++) {
                 newArray[i] = array[i];
             }
+
             array = newArray;
         }
     }
@@ -17,63 +18,86 @@ public class ArrayList {
 
     public void add(int element) {
         ensureCapacity();
-        array[filledSize] = element;
-        filledSize++;
-    }
-
-    public void add(int element, int index) {
-        if (index < array.length) {
-            array[index] = element;
-        }
+        array[size] = element;
+        size++;
     }
 
 
-    public int[] addAll(int[] arr) {
-        int[] new_array = new int[array.length + arr.length];
+    public void add(int index, int element) {
+        ensureCapacity();
+        int[] newArray = new int[size+1];
 
-        int i = 0;
+        if (index == 0) {
+            newArray[0] = element;
+            int j = 1;
 
-        for (int j : array) {
-            new_array[i] = j;
-            i++;
+            for (int i = 0; i < size; i++) {
+                newArray[j] = array[i];
+                j++;
+            }
+
         }
 
-        for (int j : arr) {
-            new_array[i] = j;
-            i++;
+        int j = 0;
+        for (int i = 0; i < index; i++) {
+            newArray[j] = array[j];
+            j++;
         }
 
-        return new_array;
+        int k = index;
+        for (int i = size; i > index; i--) {
+            newArray[k+1] = array[k];
+            k++;
+        }
+
+        newArray[index] = element;
+
+        array = newArray;
+        size++;
     }
 
+
+    public void addAll(int[] array) {
+        for (int i : array) {
+            add(i);
+        }
+    }
 
     public void removeAll() {
-        for (int i = 0; i < array.length; i++) {
-            array[i] = 0;
-        }
+        array = new int[0];
+        size = 0;
     }
 
 
     public void removeElementOfIndex(int index) {
-        for (int i = index; i < filledSize - 1; i++) {
-            array[i] = array[i + 1];
-        }
-        filledSize--;
-    }
-
-
-    public int[] removeElement(int element) {
-        int[] new_array = new int[array.length-1];
-
+        int[] newArray = new int[size-1];
         int j = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != element) {
-                new_array[j] = array[i];
+
+        for (int i = 0; i < size; i++) {
+            if (i != index) {
+                newArray[j] = array[i];
                 j++;
             }
         }
 
-        return new_array;
+        array = newArray;
+        size--;
+    }
+
+
+    public void removeElement(int element) {
+        int[] newArray = new int[size-1];
+        int j = 0;
+
+        for (int i : array) {
+            if (i != element) {
+                newArray[j] = i;
+                j++;
+            }
+        }
+
+        array = newArray;
+        size--;
     }
 
 
@@ -83,57 +107,47 @@ public class ArrayList {
 
 
     public int getIndex(int element) {
-        int result = 0;
-
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (array[i] == element) {
-                result = i;
+                return i;
             }
         }
 
-        return result;
+        return -1;
     }
 
 
-    public boolean isEmpty(int[] array) {
-        boolean result = false;
-
-        if (array.length == 0) {
-            result = true;
-        }
-
-        return result;
+    public boolean isEmpty() {
+        return size == 0;
     }
 
 
-    public int size(){
-        return filledSize;
+    public int size() {
+        return size;
     }
 
 
-    public int[] clone(int[] array) {
-        int[] new_array = array;
-
-        return new_array;
+    public int[] clonee() {
+        return array;
     }
 
 
     public int[] subList(int start, int end) {
-        int[] new_array = new int[end-start];
-        int k = 0;
+        int[] newArray = new int[end-start+1];
+        int j = 0;
 
-        for (int i = start; i < end; i++) {
-            new_array[k] = array[i];
-            k++;
+        for (int i = start; i <= end; i++) {
+            newArray[j] = array[i];
+            j++;
         }
 
-        return new_array;
+        return newArray;
     }
 
 
     public void print() {
-        for (int i = 0; i < filledSize; i++) {
-            System.out.println(array[i]);
+        for (int i : array) {
+            System.out.println(i);
         }
     }
 }
