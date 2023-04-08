@@ -139,4 +139,18 @@ public class ArrayList {
             System.out.println(i);
         }
     }
+
+
+    //Additional
+    public void reverse() {
+        int[] newArray = new int[size];
+        int j = 0;
+
+        for (int i = size-1; i >= 0; i--) {
+            newArray[j] = array[i];
+            j++;
+        }
+
+        array = newArray;
+    }
 }
