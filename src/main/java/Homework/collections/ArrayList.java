@@ -1,7 +1,7 @@
 package Homework.collections;
 
 public class ArrayList {
-    int[] array = new int[1];
+    int[] array = new int[8];
     int size = 0;
 
     public void ensureCapacity() {
