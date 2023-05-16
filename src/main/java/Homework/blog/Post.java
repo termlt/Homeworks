@@ -50,10 +50,10 @@ public class Post {
     @Override
     public String toString() {
         return "Post {" +
-                "title='" + title + '\'' +
-                ", text='" + text + '\'' +
-                ", category='" + category + '\'' +
-                ", createdDate=" + createdDate +
+                "title = '" + title + '\'' +
+                ", text = '" + text + '\'' +
+                ", category = '" + category + '\'' +
+                ", createdDate = " + createdDate +
                 '}';
     }
 }

@@ -73,6 +73,4 @@ public class PostStorage implements IPostStorage{
         posts = newArray;
         size--;
     }
-
-
 }
